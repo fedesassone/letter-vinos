@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Wine Demo</title>
+</head>
+<body>
+    <h1>🍷 Wine List</h1>
+    {% for wine in wines %}
+        <div class="wine">
+            <h2>{{ wine.name }}</h2>
+            <img src="{{ wine.image_url }}" width="150">
+            <p>{{ wine.description }}</p>
+            <h3>Reviews:</h3>
+            <ul>
+                {% for review in wine.reviews %}
+                    <li>{{ review.content }}</li>
+                {% endfor %}
+            </ul>
+            <form action="/review/{{ wine.id }}" method="post">
+                <input type="text" name="content" placeholder="Write a review">
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    {% endfor %}
+</body>
+</html>
